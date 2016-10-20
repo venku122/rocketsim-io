@@ -1,0 +1,78 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Rocket Editor</title>
+  <meta name="description" content="Rocket_Editor">
+  <meta name="author" content="T.J. Tarazevits">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poiret+One" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/editorStyles.css">
+  <script src="../js/editor.js"></script>
+</head>
+
+<body>
+<h1>Rocket Editor</h1>
+<canvas id = "visualizerCanvas"></canvas>
+
+<div id = "controls">
+<h3>Build a rocket</h3>
+
+<button type="button" id = "newRocketButton">New Rocket</button>
+<button type="button" id="saveButton">Save Rocket</button>
+<div id="controlModule">
+<button type="button" id = "addControlModuleButton">Add Control Module</button><br/>
+Type of Controller
+<select id = "typeOfControllerInput">
+  <option value="capsule">Capsule</option>
+  <option value="payload_adapter">Payload Adapter</option>
+</select>
+<br/>
+<div id = "capsuleDetails">
+  Capsule
+    # of People
+      <input type="text" id = "numOfPeopleInput" name="crewCapacity"><br>
+    </div>
+    <div id = "fairingDetails">
+  Control Unit
+  Width
+    <input type="text" id = "controlUnitWidthInput" name="tankWidth"><br>
+  Length of Fairing
+    <input type="text" id = "fairingLengthInput" name="fairingLength"><br>
+  </div>
+    </div>
+
+<div id = "fuelModule">
+<button type="button" id = "addFuelTankButton">Add Fuel Tank</button><br/>
+  Length
+  <input type="text" id = "tankLengthInput" name="tankLength"><br>
+  Diameter
+  <input type="text" id = "tankDiameterInput" name="tankDiameter"><br>
+  Tank type
+<select id = "tankTypeInput">
+  <option value="balloon">Balloon</option>
+  <option value="monocoque">Monocoque</option>
+  <option value="traditional">Traditional</option>
+</select><br/>
+Fuel Type
+<select id = "fuelTypeInput">
+  <option value="methalox">Methane/LOX</option>
+  <option value="kerolox">Kerosene/LOX</option>
+</select>
+</div>
+
+<div id = "engineModule">
+<button type="button" id = "addEnginesButton">Add Engines</button><br/>
+ Number of Engines
+ <input type="text" id = "engineNumberInput" name="numEngines"><br>
+ Type
+ <select id = "engineTypeInput">
+   <option value="merlin">Merlin</option>
+ </select>
+ </div>
+<button type="button" id="stageSeparatorButton">Add Stage Separator</button>
+</div>
+</body>
+</html>
