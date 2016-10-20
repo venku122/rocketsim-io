@@ -11,11 +11,12 @@
 
   <link rel="stylesheet" href="../css/editorStyles.css">
   <script src="../js/editor.js"></script>
+  <script src="../js/visualizer.js"></script>
 </head>
 
 <body>
 <h1>Rocket Editor</h1>
-<canvas id = "visualizerCanvas"></canvas>
+<canvas id = "visualizerCanvas" width = "400" height = "800"></canvas>
 
 <div id = "controls">
 <h3>Build a rocket</h3>
@@ -31,8 +32,7 @@ Type of Controller
 </select>
 <br/>
 <div id = "capsuleDetails">
-  Capsule
-    # of People
+      Crew
       <input type="text" id = "numOfPeopleInput" name="crewCapacity"><br>
     </div>
     <div id = "fairingDetails">

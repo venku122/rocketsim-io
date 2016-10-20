@@ -1,3 +1,6 @@
+h1{
+  font-family: "Poiret One";
+}
 #controls {
   font-family: "Poiret One";
   position: relative;
@@ -9,27 +12,36 @@
 
 #controlModule{
   padding: 25px;
+  border: 1px solid black;
+  display: none;
 }
 
 #fuelModule{
   padding: 25px;
+  border: 1px solid black;
+  display: none;
 }
 
 #engineModule{
   padding: 25px;
+  border: 1px solid black;
+  display: none;
 }
 #saveButton{
   //display:none;
 }
 #capsuleDetails{
-  //display: none;
+  display: none;
   padding: 25px;
+  border: 1px solid black;
 }
 #fairingDetails{
-    padding: 25px;
+  display: none;
+  padding: 25px;
+  border: 1px solid black;
 }
 #stageSeparator{
-//  display:none;
+  display:none;
 }
 #visualizerCanvas{
   border: 1px solid black;
