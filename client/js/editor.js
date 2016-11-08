@@ -9,7 +9,7 @@ addFuelTankButton, addEnginesButton, addStackSeparatorButton;
 let typeOfControllerInput, numOfPeopleInput, controlUnitWidthInput,
 fairingLengthInput, tankLengthInput, tankDiameterInput,
 tankTypeInput, fuelTypeInput, engineNumberInput,
-engineTypeInput;
+engineTypeInput, rocketNameInput, rocketDescriptionInput;
 
 let controls, controlModule, capsuleDetails,
 fairingDetails, fuelModule, engineModule;
@@ -41,16 +41,18 @@ const setupButtons = () => {
 };
 
 const setupInputs = () => {
-  typeOfControllerInput = document.querySelector("#typeOfControllerInput");
-  numOfPeopleInput      = document.querySelector("#numOfPeopleInput");
-  controlUnitWidthInput = document.querySelector("#controlUnitWidthInput");
-  fairingLengthInput    = document.querySelector("#fairingLengthInput");
-  tankLengthInput       = document.querySelector("#tankLengthInput");
-  tankDiameterInput     = document.querySelector("#tankDiameterInput");
-  tankTypeInput         = document.querySelector("#tankTypeInput");
-  fuelTypeInput         = document.querySelector("#fuelTypeInput");
-  engineNumberInput     = document.querySelector("#engineNumberInput");
-  engineTypeInput       = document.querySelector("#engineTypeInput");
+  typeOfControllerInput        = document.querySelector("#typeOfControllerInput");
+  numOfPeopleInput             = document.querySelector("#numOfPeopleInput");
+  controlUnitWidthInput        = document.querySelector("#controlUnitWidthInput");
+  fairingLengthInput           = document.querySelector("#fairingLengthInput");
+  tankLengthInput              = document.querySelector("#tankLengthInput");
+  tankDiameterInput            = document.querySelector("#tankDiameterInput");
+  tankTypeInput                = document.querySelector("#tankTypeInput");
+  fuelTypeInput                = document.querySelector("#fuelTypeInput");
+  engineNumberInput            = document.querySelector("#engineNumberInput");
+  engineTypeInput              = document.querySelector("#engineTypeInput");
+  rocketNameInput              = document.querySelector("#rocketNameInput");
+  rocketDescriptionInput       = document.querySelector("#rocketDescriptionInput");
 };
 
 const setupDivs = () => {
@@ -140,9 +142,65 @@ const addStackSeparator = () => {
 
 };
 
+const addDescription = () => {
+  rocket.description.name = rocketNameInput.value;
+  rocket.description.shortDesc = rocketDescriptionInput.value;
+};
+
+const addStatistics = () => {
+  /*
+  deltaV: {
+    type: Number,
+    min: 0,
+  },
+  stages: {
+    type: Number,
+    min: 0,
+  },
+  cost: {
+    type: Number,
+    min: 0,
+  },
+  mass: {
+    type: Number,
+    min: 0,
+  },*/
+
+  rocket.statistics.deltaV = 5000;
+  rocket.statistics.stages = 1;
+  rocket.statistics.cost = 25000;
+  rocket.statistics.mass = 575;
+};
+
 const saveRocket = () => {
   renderRocket(rocket);
+  addDescription();
+  addStatistics();
+  // error check
+
+  //send post request
+  sendAjax("/addRocket", rocket);
 };
+
+const sendAjax = (action, data) => {
+    $.ajax({
+        cache: false,
+        type: "POST",
+        url: action,
+        data: data,
+        dataType: "json",
+        success: (result, status, xhr) => {
+          //  $("#domoMessage").animate({width:'hide'},350);
+
+            window.location = result.redirect;
+        },
+        error: (xhr, status, error) => {
+            const messageObj = JSON.parse(xhr.responseText);
+
+            //handleError(messageObj.error);
+        }
+    });
+}
 
 
 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rich Media 2 Design Doc</title>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poiret+One" rel="stylesheet">
+<style>
+body {
+margin-left: 10%;
+margin-right: 10%;
+max-width: 1000px;
+}
+h1, h2 {
+font-family: 'Poiret One', cursive;
+}
+
+h3, p {
+font-family: 'Open Sans Condensed', sans-serif;
+}
+
+p {
+text-align: left;
+}
+</style>
+</head>
+<body>
+<h1>Rocketsim.io</h1>
+
+<h3>Abstract</h3>
+<p>Rocketsim.io is an interactive web application that allows the user to design their very own rocket with a browser-based tool. Performance characteristics are simulated and every design is saved to the server. Users can see how their designs compare to historical rockets as well as other users. Leaderboards display different statistics of their designs and graphs are used throughout</p>
+<h3>High Level Concept</h3>
+<p>The user will make an account, and will be presented with the rocket builder. The main app page will have a graphical interface and buttons/number input to allow the user to design their very own rocket. The client will show various statistics of their design. Once the user is finished they can publish it to the server for anyone to see.
+<br/>
+The user will be able to browse recently designed rockets from the community. Selected another rocket design will show statistics about it. There will be an analysis page that will graph various statistics as well. Rockets will be classified by weight or some other metric so the user can directly compare their designs to others in a broad category. Graphs will allow for multiple data sources to be displayed and compared
+</p>
+
+<h3>Discuss how it is a multi-user system</h3>
+<p>The application is multi-user because any user will be able to see and compare their results with other users. Rockets created by anyone will be visible and comparable. The idea is to make a community for comparing and designing the most efficient rockets.</p>
+
+<h3>Discuss the client platform and what will the client be written in</h3>
+
+<p>The client will be written in JS/HTML/CSS. I might want to learn Angular, only because the career fair made Angular seem to be an in demand skill. Most of the design logic will be on the client. It will send the server a representation of the final ship design as a JSON object.</p>
+
+<h3>Discuss how the server is used - what is it used for, how are users interacting with it, what data is the server storing, is any data synced between users</h3>
+<p>Rockets will be passed to the server as JSON objects. The server is responsible for logging in users, keeping a list of saved ships per user, and accepting new ship designs from the user. Also the user should be able to request a list of other ships designs from other users.</p>
+<!--Mockups of the user interface-->
+<p></p>
+<h3>Discuss and put links to any inspirations you found online.</h3>
+<p><a href = "https://kerbalspaceprogram.com/en/">Kerbal Space Program</a>
+<br/>
+<a href = "http://www.ewp.rpi.edu/hartford/~ernesto/S2013/EP/MaterialsforStudents/Lee/Sutton-Biblarz-Rocket_Propulsion_Elements.pdf">Rocket Propulsion Elements</a></p>
+<h3>Libraries you are thinking of using for both client and server.</h3>
+<p>AngularJS
+<br/>
+D3.js
+<br/></p>
+</body>
+</html>

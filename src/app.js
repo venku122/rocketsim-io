@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');              // Library to parse 
 const bodyParser = require('body-parser');                  // library to handle POST requests any information sent in an HTTP body
 const mongoose = require('mongoose');                       // Mongoose is one of the most popular MongoDB libraries for node
 const expressHandlebars = require('express-handlebars');    // express handlebars is an express plugin for handlebars templating
-
+const session = require('express-session');
 
 const router = require('./router.js');
 
@@ -26,8 +26,15 @@ const app = express();
 app.use('/assets', express.static(path.resolve(`${__dirname}/../client/`)));
 // This option tells express to use /assets in a URL path as a static mirror to our client folder
 app.use(compression()); // Call compression and tell the app to use it
-app.use(bodyParser.urlencoded({ extended: false }));  // parse form POST requests as application/x-www-form-urlencoded
+ // parse form POST requests as application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // parse application/json body requests.
+app.use(session({
+  key: 'sessionId',
+  secret: 'Awesome Rocket Game',
+  resave: true,
+  saveUninitialized: true,
+}));
 app.engine('handlebars', expressHandlebars());  // app.set sets one of the express config options
 app.set('view engine', 'handlebars'); // set up the view (V of MVC) to use handlebars
 app.set('views', `${__dirname}/../views`);  // set the views path to the template directory
