@@ -4,7 +4,7 @@
   <title>Rocketsim.io</title>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <link rel="shortcut icon" href="/assets/img/favicon.png"/>
-  <link rel="stylesheet" type="text/css" href="assets/css/loginStyle.css"/>
+  <link rel="stylesheet" href="assets/css/editorStyle.css">
   <link rel="stylesheet" href="assets/css/navbarStyle.css">
 </head>
 <body>
@@ -15,9 +15,11 @@
   </nav>
 
   <section id = "profile_info">
-    <span>Name {{account.name}}</span>
-    <span>Date Created{{ account.date}}</span>
-    <span>Number of Rockets</span>
+    {{#if profile}}
+    <span>Name:  {{profile.username}}</span>
+    <span>Date Created: {{ profile.createdData}}</span>
+    <span>Number of Rockets: {{rockets.length}} </span>
+    {{/if}}
   </section>
 
   <section id="rocket_container">
@@ -26,7 +28,7 @@
       {{#each this}}
         <div class = "rocket"><img src = "/assets/img/rocket64x64.png" alt = "rocket" class = "rocketPicture"/>
           <h3 class = "Name">Name: {{this.description.name}}</h3>
-          <p class = "description">Description: {{this.description.shortDesc}}</p>
+          <p class = "description">Description: {{description.shortDesc}}</p>
           <h3 class = "dateCreated">Created On: {{this.description.createdData}}</h3>
         </div>
       {{/each}}

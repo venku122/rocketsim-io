@@ -14,7 +14,7 @@ const hostProfile = (req, res) => {
       return res.status(400).json({ error: 'an error occurred' });
     }
     console.log(docs);
-    return res.render('profile', { rockets: docs });
+    return res.render('profile', { rockets: docs, profile: req.session.account });
   });
 };
 

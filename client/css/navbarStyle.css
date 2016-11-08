@@ -4,9 +4,11 @@ html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    font-family: "Poiret One";
 }
 h1 {
   display: inline-block;
+  font-family: "Poiret One";
 }
 
 #logo {
