@@ -25,10 +25,15 @@
   <section id="rocket_container">
   <div class="rockets">
     {{#if rockets}}
-      {{#each this}}
+      {{#each rockets}}
         <div class = "rocket"><img src = "/assets/img/rocket64x64.png" alt = "rocket" class = "rocketPicture"/>
-          <h3 class = "Name">Name: {{this.description.name}}</h3>
-          <p class = "description">Description: {{description.shortDesc}}</p>
+          <h3 class = "Name">Name:
+              {{#each this.description}}
+              {{#if this.name}}
+              {{this.name}}</h3>
+            {{/if}}
+            {{/each}}
+          <p class = "description">Description: {{this.description.shortDesc}}</p>
           <h3 class = "dateCreated">Created On: {{this.description.createdData}}</h3>
         </div>
       {{/each}}
