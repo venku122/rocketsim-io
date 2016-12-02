@@ -7,8 +7,10 @@ const bodyParser = require('body-parser');                  // library to handle
 const mongoose = require('mongoose');                       // Mongoose is one of the most popular MongoDB libraries for node
 const expressHandlebars = require('express-handlebars');    // express handlebars is an express plugin for handlebars templating
 const session = require('express-session');
-
+const RedisStore = require('connect-redis')(session);
 const router = require('./router.js');
+const url = require('url');
+const csrf = require('csurf');
 
 const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/rocketsimio';
 
@@ -18,6 +20,18 @@ mongoose.connect(dbURL, (err) => {
     throw err;
   }
 });
+
+let redisURL = {
+  hostname: 'localhost',
+  port: 6379,
+};
+
+let redisPASS;
+
+if (process.env.REDISCLOUD_URL) {
+  redisURL = url.parse(process.env.REDISCLOUD_URL);
+  redisPASS = redisURL.auth.split(':')[1];
+}
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
@@ -30,16 +44,29 @@ app.use(compression()); // Call compression and tell the app to use it
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // parse application/json body requests.
 app.use(session({
-  key: 'sessionId',
-  secret: 'Awesome Rocket Game',
+  key: 'sessionid',
+  store: new RedisStore({
+    host: redisURL.hostname,
+    port: redisURL.port,
+    pass: redisPASS,
+  }),
+  secret: 'Rocket Simulation',
   resave: true,
   saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+  },
 }));
-app.engine('handlebars', expressHandlebars());  // app.set sets one of the express config options
+app.engine('handlebars', expressHandlebars({ defaultLayout: 'main' }));  // app.set sets one of the express config options
 app.set('view engine', 'handlebars'); // set up the view (V of MVC) to use handlebars
 app.set('views', `${__dirname}/../views`);  // set the views path to the template directory
 app.use(favicon(`${__dirname}/../client/img/favicon.png`)); // call favicon with the favicon path and tell the app to use it
 app.use(cookieParser());  // call the cookie parser library and tell express to use it
+app.use((err, req, res, next) => {
+  if (err.code !== 'EBADCSRFTOKEN') return next(err);
+
+  return false;
+});
 
 router(app);  // pass our app to our router object to map the routes
 app.listen(port, (err) => {

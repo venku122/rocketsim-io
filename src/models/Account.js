@@ -27,6 +27,7 @@ const AccountSchema = new mongoose.Schema({
   createdData: {
     type: Date,
     default: Date.now,
+    required: true,
   },
 });
 

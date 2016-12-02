@@ -1,28 +1,12 @@
-<html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <title>Rocketsim.io</title>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <link rel="shortcut icon" href="/assets/img/favicon.png"/>
-  <link rel="stylesheet" href="assets/css/editorStyle.css">
-  <link rel="stylesheet" href="assets/css/navbarStyle.css">
-</head>
-<body>
-  <nav><a href="/login"><img id="logo" src="/assets/img/rocket64x64.png" alt="rocket logo"/></a>
-    <h1>Rocket Editor</h1>
-    <div class="navlink"><a href="/editor">Editor</a></div>
-    <div class="navlink"><a href="/logout">Logout</a></div>
-  </nav>
+<section id = "profile_info">
+  {{#if profile}}
+  <span>Name:  {{profile.username}}</span>
+  <span>Date Created: {{ profile.createdData}}</span>
+  <span>Number of Rockets: {{rockets.length}} </span>
+  {{/if}}
+</section>
 
-  <section id = "profile_info">
-    {{#if profile}}
-    <span>Name:  {{profile.username}}</span>
-    <span>Date Created: {{ profile.createdData}}</span>
-    <span>Number of Rockets: {{rockets.length}} </span>
-    {{/if}}
-  </section>
-
-  <section id="rocket_container">
+<section id="rocket_container">
   <div class="rockets">
     {{#if rockets}}
       {{#each rockets}}
@@ -33,8 +17,22 @@
               {{this.name}}</h3>
             {{/if}}
             {{/each}}
-          <p class = "description">Description: {{this.description.shortDesc}}</p>
-          <h3 class = "dateCreated">Created On: {{this.description.createdData}}</h3>
+          <p class = "description">Description:
+             <!--{{this.description.shortDesc}}</p>-->
+             {{#each this.description}}
+             {{#if this.shortDesc}}
+             {{this.shortDesc}}</h3>
+           {{/if}}
+           {{/each}}
+         </p>
+          <h3 class = "dateCreated">Created On:
+            <!-- {{this.description.createdData}}-->
+             {{#each this.description}}
+             {{#if this.createdData}}
+             {{this.createdData}}</h3>
+           {{/if}}
+           {{/each}}
+           </h3>
         </div>
       {{/each}}
     {{else}}
@@ -42,9 +40,5 @@
     {{/if}}
   </div>
 </section>
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
-  <script src="/assets/js/profile.js" type="text/babel"></script>
-</body>
-</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+<script src="/assets/js/profile.js" type="text/babel"></script>

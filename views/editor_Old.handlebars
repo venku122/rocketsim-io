@@ -1,12 +1,36 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Rocketsim.io</title>
+  <meta name="description" content="Rocket_Editor">
+  <meta name="author" content="T.J. Tarazevits">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poiret+One" rel="stylesheet">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="assets/css/editorStyle.css">
+  <link rel="stylesheet" href="assets/css/navbarStyle.css">
+  <!--<script src="../client/js/editor.js"></script>-->
+  <script src="assets/js/editor.js"></script>
+  <script src="assets/js/visualizer.js"></script>
+</head>
+
+<body>
+<nav><a href="/login"><img id="logo" src="/assets/img/rocket64x64.png" alt="rocket logo"/></a>
+  <h1>Rocket Editor</h1>
+  <div class="navlink"><a href="/profile">Profile</a></div>
+  <div class="navlink"><a href="/logout">Logout</a></div>
+</nav>
 <canvas id = "visualizerCanvas" width = "400" height = "800"></canvas>
 
-<div id = "controls" class = "container">
+<div id = "controls">
 <h3>Build a rocket</h3>
 
-<button type="button" id = "newRocketButton" class = "btn btn-lg btn-default">New Rocket</button>
-<button type="button" id="saveButton" class = "btn btn-lg btn-default">Save Rocket</button>
+<button type="button" id = "newRocketButton">New Rocket</button>
+<button type="button" id="saveButton">Save Rocket</button>
 <div id="controlModule">
-<button type="button" id = "addControlModuleButton" class = "btn btn-lg btn-default">Add Control Module</button><br/>
+<button type="button" id = "addControlModuleButton">Add Control Module</button><br/>
 Type of Controller
 <select id = "typeOfControllerInput">
   <option value="capsule">Capsule</option>
@@ -27,7 +51,7 @@ Type of Controller
     </div>
 
 <div id = "fuelModule">
-<button type="button" id = "addFuelTankButton" class = "btn btn-lg btn-default">Add Fuel Tank</button><br/>
+<button type="button" id = "addFuelTankButton">Add Fuel Tank</button><br/>
   Length
   <input type="text" id = "tankLengthInput" name="tankLength"><br>
   Diameter
@@ -46,7 +70,7 @@ Fuel Type
 </div>
 
 <div id = "engineModule">
-<button type="button" id = "addEnginesButton" class = "btn btn-lg btn-default">Add Engines</button><br/>
+<button type="button" id = "addEnginesButton">Add Engines</button><br/>
  Number of Engines
  <input type="text" id = "engineNumberInput" name="numEngines"><br>
  Type
@@ -54,7 +78,7 @@ Fuel Type
    <option value="merlin">Merlin</option>
  </select>
  </div>
-<button type="button" id="stageSeparatorButton" class = "btn btn-lg btn-default">Add Stage Separator</button>
+<button type="button" id="stageSeparatorButton">Add Stage Separator</button>
 </div>
 
 <div id = "description">
@@ -63,9 +87,5 @@ Fuel Type
   Description
   <input type="text" id = "rocketDescriptionInput" name="rocketDescription"><br>
 </div>
-
-<link rel="stylesheet" href="assets/css/editorStyle.css">
-<!--<link rel="stylesheet" href="assets/css/navbarStyle.css">-->
-<!--<script src="../client/js/editor.js"></script>-->
-<script src="assets/js/editor.js"></script>
-<script src="assets/js/visualizer.js"></script>
+</body>
+</html>
