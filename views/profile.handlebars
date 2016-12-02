@@ -1,8 +1,8 @@
-<section id = "profile_info">
+<section id = "profile_info" class="panel panel-default panel-heading">
   {{#if profile}}
-  <span>Name:  {{profile.username}}</span>
-  <span>Date Created: {{ profile.createdData}}</span>
-  <span>Number of Rockets: {{rockets.length}} </span>
+  <h1 class = "title" >Name:  {{profile.username}}</h1>
+  <h2>Date Created: {{profile.createdData}}</h2>
+  <h2>Number of Rockets: {{rockets.length}} </h2>
   {{/if}}
 </section>
 
@@ -10,13 +10,16 @@
   <div class="rockets">
     {{#if rockets}}
       {{#each rockets}}
-        <div class = "rocket"><img src = "/assets/img/rocket64x64.png" alt = "rocket" class = "rocketPicture"/>
-          <h3 class = "Name">Name:
+        <div class = "rocket panel panel-default">
+          <div class = "panel-heading">
+          <img src = "/assets/img/rocket64x64.png" alt = "rocket" class = "rocketPicture"/>
+          <h1 class = "name panel-title">Name:
               {{#each this.description}}
               {{#if this.name}}
-              {{this.name}}</h3>
+              {{this.name}}</h1>
             {{/if}}
             {{/each}}
+          </div>
           <p class = "description">Description:
              <!--{{this.description.shortDesc}}</p>-->
              {{#each this.description}}
@@ -25,14 +28,14 @@
            {{/if}}
            {{/each}}
          </p>
-          <h3 class = "dateCreated">Created On:
+          <p class = "dateCreated">Created On:
             <!-- {{this.description.createdData}}-->
              {{#each this.description}}
              {{#if this.createdData}}
              {{this.createdData}}</h3>
            {{/if}}
            {{/each}}
-           </h3>
+         </p>
         </div>
       {{/each}}
     {{else}}
