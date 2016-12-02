@@ -1,8 +1,13 @@
-<canvas id = "visualizerCanvas" width = "400" height = "800"></canvas>
+<canvas id = "visualizerCanvas" class = "panel panel-default" width = "400" height = "800"></canvas>
 
-<div id = "controls" class = "container panel panel-default">
+<div id = "controls" class = "container panel panel-default ">
 <h3>Build a rocket</h3>
-
+<div id = "description">
+  Name
+  <input type="text" id = "rocketNameInput" name="rocketName" class="form-control"><br>
+  Description
+  <input type="text" id = "rocketDescriptionInput" name="rocketDescription" class="form-control"><br>
+</div>
 <button type="button" id = "newRocketButton" class = "btn btn-lg btn-default">New Rocket</button>
 <div id="controlModule" class = "panel panel-default">
 Type of Controller
@@ -57,14 +62,6 @@ Fuel Type
  </div>
 <!--<button type="button" id="stageSeparatorButton" class = "btn btn-lg btn-default">Add Stage Separator</button>-->
 <button type="button" id="saveButton" class = "btn btn-lg btn-default">Save Rocket</button>
-
-</div>
-
-<div id = "description">
-  Name
-  <input type="text" id = "rocketNameInput" name="rocketName"><br>
-  Description
-  <input type="text" id = "rocketDescriptionInput" name="rocketDescription"><br>
 </div>
 
 <link rel="stylesheet" href="assets/css/editorStyle.css">

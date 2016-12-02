@@ -39,7 +39,8 @@ const saveRocket = (req, res) => {
       return res.status(400).json({ error: 'An error occured' });
     }
     console.log(newRocket);
-    return res.json({ redirect: '/profile' });
+    //return res.json({ redirect: '/profile' });
+    return res.json({});
   });
 };
 
