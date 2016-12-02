@@ -1,37 +1,36 @@
 <canvas id = "visualizerCanvas" width = "400" height = "800"></canvas>
 
-<div id = "controls" class = "container">
+<div id = "controls" class = "container panel panel-default">
 <h3>Build a rocket</h3>
 
 <button type="button" id = "newRocketButton" class = "btn btn-lg btn-default">New Rocket</button>
-<button type="button" id="saveButton" class = "btn btn-lg btn-default">Save Rocket</button>
-<div id="controlModule">
-<button type="button" id = "addControlModuleButton" class = "btn btn-lg btn-default">Add Control Module</button><br/>
+<div id="controlModule" class = "panel panel-default">
 Type of Controller
 <select id = "typeOfControllerInput">
   <option value="capsule">Capsule</option>
   <option value="payload_adapter">Payload Adapter</option>
 </select>
 <br/>
-<div id = "capsuleDetails">
+<div id = "capsuleDetails" class = "panel panel-default">
       Crew
-      <input type="text" id = "numOfPeopleInput" name="crewCapacity"><br>
+      <input type="text" id = "numOfPeopleInput" name="crewCapacity" class="form-control"><br>
     </div>
     <div id = "fairingDetails">
   Control Unit
   Width
-    <input type="text" id = "controlUnitWidthInput" name="tankWidth"><br>
+    <input type="text" id = "controlUnitWidthInput" name="tankWidth" class="form-control"><br>
   Length of Fairing
-    <input type="text" id = "fairingLengthInput" name="fairingLength"><br>
+  <input type="text" id = "controlUnitWidthInput" name="tankWidth" class="form-control"><br>
+    <input type="text" id = "fairingLengthInput" name="fairingLength" ><br>
   </div>
-    </div>
+  <button type="button" id = "addControlModuleButton" class = "btn btn-lg btn-default">Add Control Module</button><br/>
+</div>
 
-<div id = "fuelModule">
-<button type="button" id = "addFuelTankButton" class = "btn btn-lg btn-default">Add Fuel Tank</button><br/>
+<div id = "fuelModule" class = "panel panel-default">
   Length
-  <input type="text" id = "tankLengthInput" name="tankLength"><br>
+  <input type="text" id = "tankLengthInput" name="tankLength" class="form-control" ><br>
   Diameter
-  <input type="text" id = "tankDiameterInput" name="tankDiameter"><br>
+  <input type="text" id = "tankDiameterInput" name="tankDiameter" class="form-control"><br>
   Tank type
 <select id = "tankTypeInput">
   <option value="balloon">Balloon</option>
@@ -42,19 +41,23 @@ Fuel Type
 <select id = "fuelTypeInput">
   <option value="methalox">Methane/LOX</option>
   <option value="kerolox">Kerosene/LOX</option>
-</select>
+</select><br/>
+<button type="button" id = "addFuelTankButton" class = "btn btn-lg btn-default">Add Fuel Tank</button>
 </div>
 
-<div id = "engineModule">
-<button type="button" id = "addEnginesButton" class = "btn btn-lg btn-default">Add Engines</button><br/>
+<div id = "engineModule" class = "panel panel-default">
  Number of Engines
- <input type="text" id = "engineNumberInput" name="numEngines"><br>
+ <input type="text" id = "engineNumberInput" name="numEngines" class="form-control"><br>
  Type
  <select id = "engineTypeInput">
    <option value="merlin">Merlin</option>
  </select>
+ <br/>
+ <button type="button" id = "addEnginesButton" class = "btn btn-lg btn-default">Add Engines</button>
  </div>
-<button type="button" id="stageSeparatorButton" class = "btn btn-lg btn-default">Add Stage Separator</button>
+<!--<button type="button" id="stageSeparatorButton" class = "btn btn-lg btn-default">Add Stage Separator</button>-->
+<button type="button" id="saveButton" class = "btn btn-lg btn-default">Save Rocket</button>
+
 </div>
 
 <div id = "description">
