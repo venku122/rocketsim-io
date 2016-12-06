@@ -14,6 +14,8 @@ engineTypeInput, rocketNameInput, rocketDescriptionInput;
 let controls, controlModule, capsuleDetails,
 fairingDetails, fuelModule, engineModule;
 
+let massRatio, massFinal, massInitial, exhaustVelocity, tankRatio, totalcost;
+
 let rocket = {};
 
 
@@ -38,6 +40,7 @@ const setupButtons = () => {
   addFuelTankButton.addEventListener("click", addFuelTank);
   addEnginesButton.addEventListener("click", addEngines);
   saveRocketButton.addEventListener("click", saveRocket);
+  saveRocketButton.style.display = "none";
 };
 
 const setupInputs = () => {
@@ -66,7 +69,7 @@ const setupDivs = () => {
 
 const initializeRocketBuilder = () => {
   controlModule.style.display = "block";
-  if(typeOfControllerInput.value == "capsule") {
+  if(typeOfControllerInput.value === "capsule") {
     capsuleDetails.style.display = "block";
   }
 
@@ -104,6 +107,8 @@ const addFuelTank = () => {
          tankType: tankTypeInput.value
        }
      };
+     checkTankType(tankTypeInput.value);
+     checkFuelType(fuelTypeInput.value);
      fuelModule.style.display = "none";
      engineModule.style.display = "block";
      rocket.components.push(fuelTank);
@@ -119,6 +124,7 @@ const addEngines = () => {
       }
     };
      rocket.components.push(engines);
+     saveRocketButton.style.display = "block";
   }else Window.alert("There was an error");
 };
 
@@ -166,6 +172,10 @@ const addStatistics = () => {
     min: 0,
   },*/
 
+  rocket.statistics.deltaV = calculateDeltaV();
+  rocket.statistics.cost =   calculateCost();
+  rocket.statistics.mass =   calculateMass()
+
   rocket.statistics.deltaV = 5000;
   rocket.statistics.stages = 1;
   rocket.statistics.cost = 25000;
@@ -199,7 +209,62 @@ const sendAjax = (action, data) => {
             //handleError(messageObj.error);
         }
     });
-}
+};
+
+const calculateDeltaV = () => {
+  // deltaV = exhaustVelocity * ln(massInitial/massFinal)
+  // deltaV = exhaustVelocity * ln(massRatio)
+  deltaV = exhaustVelocity * Math.log(massRatio);
+  return deltaV;
+};
+
+const calculateMass = () => {
+   // tankMass = volume * fuelTypeDensity
+  let tankMass = Number.parseInt(rocket.components[1].fuelTank.volume) * fueltypeDensity;
+  let wetMass = tankMass - (tankMass * tankRatio);
+  let engineMass =
+  let payloadMass =
+  massInitial = tankMass + engineMass + payloadMass;
+  massFinal = massInitial - wetMass;
+  mass ratio = massInitial / massFinal
+  return massInitial;
+};
+
+const calculateCost = () => {
+
+  return totalcost;
+};
+
+const checkTankType = ( ttype ) => {
+  switch(ttype) {
+    case 'balloon':
+      tankRatio = .9;
+      break;
+    case 'monocoque':
+      tankRatio = .85;
+      break;
+    case 'traditional':
+      tankRatio = .8;
+      break;
+  }
+};
+
+const checkFuelType = (fType) => {
+  // kg/m^3
+  switch(fType) {
+    case 'methalox':
+      fueltypeDensity = 828;
+      break;
+    case 'kerolox':
+      fueltypeDensity = 1031;
+      break;
+    case 'hydrolox':
+      fueltypeDensity = 358;
+      break;
+  }
+
+  fueltypeDensity
+};
 
 
 
