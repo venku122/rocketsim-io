@@ -22,20 +22,28 @@
           </div>
           <p class = "description">Description:
              <!--{{this.description.shortDesc}}</p>-->
-             {{#each this.description}}
-             {{#if this.shortDesc}}
-             {{this.shortDesc}}</h3>
-           {{/if}}
-           {{/each}}
+            {{#each this.description}}
+              {{#if this.shortDesc}}
+                {{this.shortDesc}}
+              {{/if}}
+            {{/each}}
          </p>
           <p class = "dateCreated">Created On:
             <!-- {{this.description.createdData}}-->
              {{#each this.description}}
-             {{#if this.createdData}}
-             {{this.createdData}}</h3>
-           {{/if}}
-           {{/each}}
+              {{#if this.createdData}}
+                {{this.createdData}}
+              {{/if}}
+             {{/each}}
          </p>
+         <p class = "deltaV">DeltaV:
+           <!-- {{this.description.createdData}}-->
+            {{#each this.statistics}}
+             {{#if this.deltaV}}
+               {{this.deltaV}} m/s
+             {{/if}}
+            {{/each}}
+        </p>
          <button type="button" id = "expandRocket" class = "btn btn-lg btn-default">More Info</button><br/>
         </div>
       {{/each}}

@@ -14,7 +14,7 @@ engineTypeInput, rocketNameInput, rocketDescriptionInput;
 let controls, controlModule, capsuleDetails,
 fairingDetails, fuelModule, engineModule;
 
-let massRatio, massFinal, massInitial, exhaustVelocity, tankRatio, totalcost;
+let massRatio, massFinal, massInitial, exhaustVelocity, tankRatio, totalCost, fueltypeDensity;
 
 let rocket = {};
 
@@ -124,6 +124,7 @@ const addEngines = () => {
       }
     };
      rocket.components.push(engines);
+     checkEngineType(engineTypeInput.value);
      saveRocketButton.style.display = "block";
   }else Window.alert("There was an error");
 };
@@ -171,15 +172,10 @@ const addStatistics = () => {
     type: Number,
     min: 0,
   },*/
-
+  rocket.statistics.mass =   calculateMass()
   rocket.statistics.deltaV = calculateDeltaV();
   rocket.statistics.cost =   calculateCost();
-  rocket.statistics.mass =   calculateMass()
-
-  rocket.statistics.deltaV = 5000;
   rocket.statistics.stages = 1;
-  rocket.statistics.cost = 25000;
-  rocket.statistics.mass = 575;
 };
 
 const saveRocket = () => {
@@ -214,25 +210,28 @@ const sendAjax = (action, data) => {
 const calculateDeltaV = () => {
   // deltaV = exhaustVelocity * ln(massInitial/massFinal)
   // deltaV = exhaustVelocity * ln(massRatio)
-  deltaV = exhaustVelocity * Math.log(massRatio);
+  let deltaV = exhaustVelocity * Math.log(massRatio);
   return deltaV;
 };
 
 const calculateMass = () => {
    // tankMass = volume * fuelTypeDensity
   let tankMass = Number.parseInt(rocket.components[1].fuelTank.volume) * fueltypeDensity;
-  let wetMass = tankMass - (tankMass * tankRatio);
-  let engineMass =
-  let payloadMass =
+  let dryMass = tankMass - (tankMass * tankRatio);
+  let wetMass = tankMass - dryMass;
+  let engineMass = Number.parseInt(rocket.components[2].engines.number) * 1000;
+  let payloadMass = 1000 + (Number.parseInt(rocket.components[0].capsule.crew) * 750);
   massInitial = tankMass + engineMass + payloadMass;
   massFinal = massInitial - wetMass;
-  mass ratio = massInitial / massFinal
+  massRatio = massInitial / massFinal;
   return massInitial;
 };
 
 const calculateCost = () => {
 
-  return totalcost;
+  totalCost = massFinal * 3.759;
+
+  return totalCost;
 };
 
 const checkTankType = ( ttype ) => {
@@ -245,6 +244,22 @@ const checkTankType = ( ttype ) => {
       break;
     case 'traditional':
       tankRatio = .8;
+      break;
+    default:
+      tankRatio = .75;
+      break;
+  }
+};
+
+const checkEngineType = ( eType ) => {
+  const GRAVITY = 9.81;
+  switch(eType) {
+    case 'merlin':
+      let specificImpulse = 282;
+      exhaustVelocity = GRAVITY * specificImpulse;
+      break;
+    default:
+      exhaustVelocity = GRAVITY * 100;
       break;
   }
 };
@@ -261,13 +276,10 @@ const checkFuelType = (fType) => {
     case 'hydrolox':
       fueltypeDensity = 358;
       break;
+    default:
+      fueltypeDensity = 200;
+      break;
   }
-
-  fueltypeDensity
 };
-
-
-
-
 
 window.onload = init;

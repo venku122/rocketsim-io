@@ -30,7 +30,7 @@ const saveRocket = (req, res) => {
 
   //rocketData.description.author = req.session.account._id;
   rocketData.description.author = req.session.account._id;
-
+  console.log(rocketData.statistics);
   const newRocket = new models.Rocket.RocketModel(rocketData);
 
   return newRocket.save((err) => {
