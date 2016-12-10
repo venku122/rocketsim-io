@@ -82,6 +82,10 @@ AccountSchema.statics.authenticate = (username, password, callback) =>
    });
  });
 
+AccountSchema.statics.findAccounts = ( callback) => {
+ return AccountModel.find().exec(callback);
+};
+
 AccountModel = mongoose.model('Account', AccountSchema);
 
 module.exports.AccountModel = AccountModel;

@@ -67,6 +67,16 @@ RocketSchema.statics.findByAuthor = (authorId, callback) => {
   return RocketModel.find(search).exec(callback);
 };
 
+RocketSchema.statics.FindAll = ( callback) => {
+
+  /*const search = {
+    'description.author' : convertId(authorId),
+  };*/
+
+  return RocketModel.find().exec(callback);
+};
+
+
 RocketModel = mongoose.model('Rocket', RocketSchema);
 
 module.exports.RocketModel = RocketModel;

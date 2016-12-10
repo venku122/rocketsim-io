@@ -1,0 +1,45 @@
+  <h2>There are {{rockets.length}} rockets on RocketSim.io</h2>
+<div class="rockets">
+  {{#if rockets}}
+    {{#each rockets}}
+      <div class = "rocket panel panel-default">
+        <div class = "panel-heading">
+        <img src = "/assets/img/rocket64x64.png" alt = "rocket" class = "rocketPicture"/>
+        <h1 class = "name panel-title">Name:
+            {{#each this.description}}
+            {{#if this.name}}
+            {{this.name}}</h1>
+          {{/if}}
+          {{/each}}
+        </div>
+        <p class = "description">Description:
+           <!--{{this.description.shortDesc}}</p>-->
+          {{#each this.description}}
+            {{#if this.shortDesc}}
+              {{this.shortDesc}}
+            {{/if}}
+          {{/each}}
+       </p>
+        <p class = "dateCreated">Created On:
+          <!-- {{this.description.createdData}}-->
+           {{#each this.description}}
+            {{#if this.createdData}}
+              {{this.createdData}}
+            {{/if}}
+           {{/each}}
+       </p>
+       <p class = "deltaV">DeltaV:
+         <!-- {{this.description.createdData}}-->
+          {{#each this.statistics}}
+           {{#if this.deltaV}}
+             {{this.deltaV}} m/s
+           {{/if}}
+          {{/each}}
+      </p>
+       <button type="button" id = "expandRocket" class = "btn btn-lg btn-default">More Info</button><br/>
+      </div>
+    {{/each}}
+  {{else}}
+      <h3 class = "emptyRockets">No Rockets</h3>
+  {{/if}}
+</div>

@@ -9,6 +9,8 @@ const router = (app) => {
   app.get('/editor',mid.requiresLogin, controllers.Editor.editor);
   app.post('/addRocket', mid.requiresLogin, controllers.Editor.addRocket);
   app.get('/profile', mid.requiresLogin, controllers.Profile.profile);
+  app.get('/browseProfile', mid.requiresLogin, controllers.Browser.browseProfile);
+  app.get('/browseRocket', mid.requiresLogin, controllers.Browser.browseRocket);
   app.get('/', mid.requiresLogout, controllers.Account.loginPage);
 };
 
