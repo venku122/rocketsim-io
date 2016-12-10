@@ -4,7 +4,11 @@
     <h1 class = "title" >Name:  {{this.username}}</h1>
     <h2>Date Created: {{this.createdData}}</h2>
     <!--<h2>Number of Rockets: {{rockets.length}} </h2>-->
-    <button type="button" id = "expandRocket" class = "btn btn-lg btn-default">View Profile</button><br/>
+    <button type="button" class = "btn btn-lg btn-default expandProfile">View Profile
+      <input type="hidden" name="profileID" value= {{this._id}}>
+    </button><br/>
     </section>
   {{/each}}
 {{/if}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+<script src="/assets/js/browser.js" type="text/babel"></script>

@@ -18,7 +18,27 @@ const hostProfile = (req, res) => {
   });
 };
 
+const hostOtherProfile = (req, res) => {
+
+  models.Rocket.RocketModel.findByAuthor(req.query.profileID, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'an error occurred' });
+    }
+    console.log(docs);
+    models.Account.AccountModel.findByID(req.query.profileID, (err, doc2)=> {
+      if (err) {
+        console.log(err);
+        return res.status(400).json({ error: 'an error occurred' });
+      }
+      console.log(docs);
+      return res.render('profile', { rockets: docs, profile: doc2});
+    });
+  });
+};
+
 // export variables
 module.exports = {
   profile: hostProfile,
+  otherProfile: hostOtherProfile,
 };

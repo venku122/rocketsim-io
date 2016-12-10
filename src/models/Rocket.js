@@ -67,6 +67,15 @@ RocketSchema.statics.findByAuthor = (authorId, callback) => {
   return RocketModel.find(search).exec(callback);
 };
 
+RocketSchema.statics.findByID = (rID, callback) => {
+  console.log(`rocket ID received: ${rID}`);
+  const search = {
+    _id: rID,
+  };
+
+  return RocketModel.find(search).exec(callback);
+}
+
 RocketSchema.statics.FindAll = ( callback) => {
 
   /*const search = {

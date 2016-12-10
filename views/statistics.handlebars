@@ -1,7 +1,6 @@
-  <h2>There are {{rockets.length}} rockets on RocketSim.io</h2>
 <div class="rockets">
-  {{#if rockets}}
-    {{#each rockets}}
+  {{#if rocket}}
+    {{#each rocket}}
       <div class = "rocket panel panel-default">
         <div class = "panel-heading">
         <img src = "/assets/img/rocket64x64.png" alt = "rocket" class = "rocketPicture"/>
@@ -28,6 +27,7 @@
             {{/if}}
            {{/each}}
        </p>
+       <div class = "panel">
        <p class = "deltaV">DeltaV:
          <!-- {{this.description.createdData}}-->
           {{#each this.statistics}}
@@ -36,13 +36,34 @@
            {{/if}}
           {{/each}}
       </p>
-      <button type="button" class = "btn btn-lg btn-default expandRocket">More Info
-        <input type="hidden" name="rocketID" value= {{this._id}}>
-      </button><br/>      </div>
+      <p class = "mass">Mass:
+        <!-- {{this.description.createdData}}-->
+         {{#each this.statistics}}
+          {{#if this.mass}}
+            {{this.mass}} kg
+          {{/if}}
+         {{/each}}
+     </p>
+     <p class = "cost">Cost: $
+       <!-- {{this.description.createdData}}-->
+        {{#each this.statistics}}
+         {{#if this.cost}}
+           {{this.cost}}
+         {{/if}}
+        {{/each}}
+    </p>
+    <p class = "stages">Stages:
+      <!-- {{this.description.createdData}}-->
+       {{#each this.statistics}}
+        {{#if this.stages}}
+          {{this.stages}}
+        {{/if}}
+       {{/each}}
+   </p>
+    </div>
+      </div>
     {{/each}}
   {{else}}
-      <h3 class = "emptyRockets">No Rockets</h3>
+      <h3 class = "emptyRockets">An Error has Occured</h3>
   {{/if}}
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
-<script src="/assets/js/browser.js" type="text/babel"></script>
+</div

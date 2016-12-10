@@ -44,7 +44,9 @@
              {{/if}}
             {{/each}}
         </p>
-         <button type="button" id = "expandRocket" class = "btn btn-lg btn-default">More Info</button><br/>
+         <button type="button" class = "btn btn-lg btn-default expandRocket">More Info
+           <input type="hidden" name="rocketID" value= {{this._id}}>
+         </button><br/>
         </div>
       {{/each}}
     {{else}}
